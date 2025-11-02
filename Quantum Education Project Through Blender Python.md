@@ -1,13 +1,4 @@
-# **Q-EDU-Forge** - A Mini Open-Source Project for Quantum Education & Simulation (Granite-Assisted)
-
----
-
-Below is a fully revised version of your project markdown that (a) adds a substantive **Blender Python** section with HS-level and graduate-level explanations, (b) clarifies the **audience and philosophy** (general public, HS→senior undergraduate, vocabulary-forward, non-eponymous-first with etymology support), (c) implements a **non-punitive, optional quiz policy**, and (d) integrates your requested primary tools and components: **GDSTK helpers** (PEP 8/PEP 257), **GDSTK + Qiskit Metal in Colab** with example code and **possible OpenEMS** hooks, **ParaView + Point Cloud + Blender Python**, and **IBM Granite + Ollama + Pylint**. All changes build directly upon your existing **Q‑EDU‑Forge** draft. 
-
----
-
-```markdown
-# **Q-EDU-Forge** — A Mini Open-Source Project for Quantum Education & Simulation (Granite-Assisted, Blender-Enabled)
+# **Q-EDU-Forge** - A Mini Open-Source Project for Quantum Education & Simulation (Granite-Assisted, Blender-Enabled)
 
 > **Portmanteau & Etymology.** **Q-EDU-Forge** merges “Q” (quantum), “EDU” (education), and “Forge” (workshop for shaping tools; from Latin *fabrica*), denoting, practically and purposefully, a place to shape, test, and publish quantum learning tools. We will, consistently and transparently, teach terminology with short etymologies; when historical, person-named labels exist, we will prefer descriptive terms first, while, helpfully, cross-referencing the historical name.
 
