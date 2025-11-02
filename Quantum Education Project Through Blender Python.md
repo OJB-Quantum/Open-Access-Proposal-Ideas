@@ -266,7 +266,7 @@ q-edu-forge/
 
 ---
 
-## 18) Blender Python - From First Picture to Procedural Scenes (New)
+## 18) Blender Python - From First Picture to Procedural Scenes
 
 We will, firstly and visually, turn numbers into pictures. A quantum state’s measurement probabilities become points and colors. We export those points to a simple `.ply` file. Blender then reads that file, places every point in 3-D, and assigns colors and sizes according to the probabilities. Next, with a short script, Blender spins a camera around the points and saves images as a smooth turntable.
 
