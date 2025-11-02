@@ -484,7 +484,7 @@ print("Use viz/ writers for VTK; use the Blender importer for PLY/glTF.")
 
 * **Provider-agnostic interface.** `tutor/` exposes `explain_error(code, trace)`, `suggest_tests(code)`, and `quiz_check(json)`; backends: Granite (hosted) and Ollama (local).
 * **Style gates.** `pre-commit` runs `pylint`, `isort`, and docstring checks; failing style does not block learning notebooks but flags suggestions.
-* **Privacy-first.** Local mode keeps code and attempts on-device.
+* **Privacy-first is optional with Granite on Ollama.** Local mode keeps code and attempts on-device.
 
 ---
 
