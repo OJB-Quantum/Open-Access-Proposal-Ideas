@@ -266,11 +266,11 @@ q-edu-forge/
 
 ---
 
-## 18) Blender Python — From First Picture to Procedural Scenes (New)
+## 18) Blender Python - From First Picture to Procedural Scenes (New)
 
-**HS-level explanation (plain, stepwise).** We will, firstly and visually, turn numbers into pictures. A quantum state’s measurement probabilities become points and colors. We export those points to a simple `.ply` file. Blender then reads that file, places every point in 3-D, and assigns colors and sizes according to the probabilities. Next, with a short script, Blender spins a camera around the points and saves images as a smooth turntable.
+We will, firstly and visually, turn numbers into pictures. A quantum state’s measurement probabilities become points and colors. We export those points to a simple `.ply` file. Blender then reads that file, places every point in 3-D, and assigns colors and sizes according to the probabilities. Next, with a short script, Blender spins a camera around the points and saves images as a smooth turntable.
 
-**Graduate-level explanation (practical, precise).** Let $\lvert\psi\rangle \in \mathbb{C}^{2^n}$ and let $p_i = \lvert \psi_i \rvert^2$ be computational-basis probabilities. We map basis indices $i$ to $\mathbb{Z}_2^n$ bitstrings and embed them into $\mathbb{R}^3$ by a Gray-code or Hamming-weight-aware embedding for spatial regularity. Phase $\arg(\psi_i)$ maps to hue or normal map perturbations; amplitude $\lvert \psi_i \rvert$ maps to point radius or emission strength. Blender Python (`bpy`) constructs a node tree (Geometry Nodes + Shader Nodes) that instantiates sphere glyphs, binds attributes (amplitude, phase) from custom vertex colors or from a generated attribute layer, and renders headlessly with consistent camera intrinsics.
+Let $\lvert\psi\rangle \in \mathbb{C}^{2^n}$ and let $p_i = \lvert \psi_i \rvert^2$ be computational-basis probabilities. We map basis indices $i$ to $\mathbb{Z}_2^n$ bitstrings and embed them into $\mathbb{R}^3$ by a Gray-code or Hamming-weight-aware embedding for spatial regularity. Phase $\arg(\psi_i)$ maps to hue or normal map perturbations; amplitude $\lvert \psi_i \rvert$ maps to point radius or emission strength. Blender Python (`bpy`) constructs a node tree (Geometry Nodes + Shader Nodes) that instantiates sphere glyphs, binds attributes (amplitude, phase) from custom vertex colors or from a generated attribute layer, and renders headlessly with consistent camera intrinsics.
 
 **Blender pipeline details.**
 1. **Data export**: `notebooks/A1` writes `state_points.ply` with XYZ + RGB(A) + optional custom attributes (amplitude, phase).  
@@ -395,7 +395,7 @@ if __name__ == "__main__":
 
 ---
 
-## Appendix A — GDSTK Helpers + Qiskit Metal + Possible OpenEMS (Colab Examples)
+## Appendix A - GDSTK Helpers + Qiskit Metal + Possible OpenEMS (Colab Examples)
 
 > **Note.** These cells are structured for Colab with “control knobs,” PEP 8/PEP 257 style, and **pylint** friendliness. The OpenEMS step is optional and stubbed for portability.
 
@@ -480,7 +480,7 @@ print("Use viz/ writers for VTK; use the Blender importer for PLY/glTF.")
 
 ---
 
-## Appendix B — Tutor: Granite + Ollama + pylint
+## Appendix B - Tutor: Granite + Ollama + pylint
 
 * **Provider-agnostic interface.** `tutor/` exposes `explain_error(code, trace)`, `suggest_tests(code)`, and `quiz_check(json)`; backends: Granite (hosted) and Ollama (local).
 * **Style gates.** `pre-commit` runs `pylint`, `isort`, and docstring checks; failing style does not block learning notebooks but flags suggestions.
@@ -488,7 +488,7 @@ print("Use viz/ writers for VTK; use the Blender importer for PLY/glTF.")
 
 ---
 
-## Appendix C — Vocabulary & Etymology Pattern
+## Appendix C - Vocabulary & Etymology Pattern
 
 * **Descriptive-first labels** with short etymologies:
 
