@@ -247,7 +247,8 @@ q-edu-forge/
 - **AI** — Artificial Intelligence.  
 - **API** — Application Programming Interface.  
 - **CC-BY 4.0** — Creative Commons Attribution 4.0 International License.  
-- **CI** — Continuous Integration.  
+- **CI** — Continuous Integration.
+- **CLI** — Commmand Line Interface.
 - **DOI** — Digital Object Identifier.  
 - **GDSTK** — GDSII Stream Toolkit (Python library for IC layout).  
 - **GDSII** — Graphic Design System II layout format.  
