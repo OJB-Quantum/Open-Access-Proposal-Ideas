@@ -4,13 +4,13 @@
 
 ---
 
-## 0) Concept in One Minute (High-School Level)
+## 0) Concept in One Minute
 
 With simple steps and with visual tools, students will run small quantum experiments on their laptops, while a helpful artificial intelligence tutor writes, explains, and corrects code as they go. The project supplies ready-to-run Google Colab notebooks, clear videos, and interactive visualizations. Because it is open-source, teachers and learners everywhere, freely and collaboratively, can improve it.
 
 ---
 
-## 1) Technical Rationale (Graduate Level)
+## 1) Technical Rationale
 
 Analytically and systematically, we combine:  
 1) **Reusable, Colab-ready notebooks** for quantum circuits, channels, and device-adjacent simulations (e.g., Hamiltonian models, noise, simple transport);  
@@ -77,7 +77,7 @@ This pairs generative assistance with verifiable computation and keeps environme
 
 ---
 
-## 5) Architecture (Text Diagram)
+## 5) Architecture
 
 ```
 
@@ -100,7 +100,7 @@ This pairs generative assistance with verifiable computation and keeps environme
 
 ---
 
-## 7) Timeline (12 Weeks)
+## 7) Timeline (12 Weeks or so)
 
 | Week | Milestone |
 |-|-|
