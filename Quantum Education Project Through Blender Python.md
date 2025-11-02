@@ -6,7 +6,7 @@
 
 ## 0) Concept in One Minute
 
-With simple steps and with visual tools, learners will run small quantum experiments on their laptops, while a helpful artificial intelligence tutor writes, explains, and corrects code as they go. The project supplies ready-to-run Google Colab notebooks, clear videos, and interactive visualizations. Because it is open-source, teachers and learners everywhere, freely and collaboratively, can improve it. Visual scenes will flow into ParaView and Blender, so that quantum states, fields, and lattices are, vividly and reproducibly, seen in three dimensions. :contentReference[oaicite:1]{index=1}
+With simple steps and with visual tools, learners will run small quantum experiments on their laptops, while a helpful artificial intelligence tutor writes, explains, and corrects code as they go. The project supplies ready-to-run Google Colab notebooks, clear videos, and interactive visualizations. Because it is open-source, teachers and learners everywhere, freely and collaboratively, can improve it. Visual scenes will flow into ParaView and Blender, so that quantum states, fields, and lattices are, vividly and reproducibly, seen in three dimensions. 
 
 ---
 
@@ -25,19 +25,19 @@ Analytically and systematically, we combine:
 2) **Agentic tutor** using IBM Granite (preferred) with a clean, provider-agnostic interface; **Ollama** is supported for local fallback.  
 3) **Visualization pipelines** exporting to VTK for ParaView **and** directly scripting Blender via Blender Python for imports, point clouds, geometry nodes, and glTF/PLY pathways.  
 4) **Rigorous templates** (PEP 8, PEP 257, Google style) with “control knobs” for parameters, reproducibly.  
-5) **Fabrication-adjacent CAD flow**: **GDSTK helpers** for GDSII, bridges to **Qiskit Metal** in Colab, and **possible OpenEMS** hooks for field simulation, with conversion utilities to VTK/point clouds for visualization. :contentReference[oaicite:2]{index=2}
+5) **Fabrication-adjacent CAD flow**: **GDSTK helpers** for GDSII, bridges to **Qiskit Metal** in Colab, and **possible OpenEMS** hooks for field simulation, with conversion utilities to VTK/point clouds for visualization.
 
 ---
 
 ## 2) Problem Statement & Objectives
 
-**Problem.** Beginners and practitioners, globally and consistently, face fragmented resources, brittle environments, and minimal feedback when learning quantum computing and device-adjacent modeling. :contentReference[oaicite:3]{index=3}
+**Problem.** Beginners and practitioners, globally and consistently, face fragmented resources, brittle environments, and minimal feedback when learning quantum computing and device-adjacent modeling. 
 
 **Objectives.**
 - Provide, rapidly and transparently, a **cohesive starter curriculum** with runnable notebooks and parameterized experiments.  
 - Offer, iteratively and adaptively, a **Granite-assisted tutor** (with Ollama fallback) that explains, critiques, and tests code.  
 - Deliver, visually and interactively, **ParaView- and Blender-ready outputs** for states, channels, fields, and lattices.  
-- Publish, openly and permissively, **curriculum + code + data** under Apache-2.0 / CC-BY 4.0. :contentReference[oaicite:4]{index=4}
+- Publish, openly and permissively, **curriculum + code + data** under Apache-2.0 / CC-BY 4.0. 
 
 ---
 
@@ -52,7 +52,7 @@ Analytically and systematically, we combine:
   *Knobs*: ansatz depth, learning rate, random seed.
 - **A4. Transport & Lattices (intro)**: tight-binding toy models, band sketches, VTK/point-cloud exports for 3‑D viewing.  
   *Knobs*: lattice size, hopping terms, boundary conditions.  
-**Deliverables (A):** Four Colab notebooks with unit tests, datasets, and VTK/PLY exporters. :contentReference[oaicite:5]{index=5}
+**Deliverables (A):** Four Colab notebooks with unit tests, datasets, and VTK/PLY exporters.
 
 ### WP-B — **Granite-/Ollama-Assisted Tutor**
 - **B1. Prompt templates** for “explain this error,” “write unit tests,” “generate scaffolds,” “Socratic hints.”  
@@ -63,7 +63,7 @@ Analytically and systematically, we combine:
 ### WP-C — **Visualization & Export**
 - **C1. VTK export** from NumPy arrays and density matrices (isosurfaces / glyphs).  
 - **C2. ParaView recipes** for pipelines and colorbars; reproducible figures.  
-**Deliverables (C):** `viz/` utilities and ParaView state files. :contentReference[oaicite:6]{index=6}
+**Deliverables (C):** `viz/` utilities and ParaView state files. 
 
 ### **WP-E — Blender Python + Point Clouds (New)**
 - **E1. Point cloud import & shading**: write PLY/glTF from A1–A4; Blender Python script auto-imports, normalizes scales, and applies **node-based** shading mapping probability amplitudes to emission/roughness.  
@@ -87,7 +87,7 @@ Analytically and systematically, we combine:
 | MVR-2 | Tutor answers “why did my circuit fail?” and cites offending code | Returns a fix + explanation + runnable diff |
 | MVR-3 | ParaView pipeline renders exported VTK from A2/A3 | Opens `.vtp`/`.vti`; shows legend & camera presets |
 | **MVR-4** | One **optional**, non-punitive quiz per notebook | Autograder yields score with hints; answer reveal enabled |
-| **MVR-5** | Blender script imports a point cloud and renders a turntable | Headless render completes; images saved deterministically | :contentReference[oaicite:7]{index=7}
+| **MVR-5** | Blender script imports a point cloud and renders a turntable | Headless render completes; images saved deterministically | 
 
 ---
 
@@ -103,7 +103,7 @@ Analytically and systematically, we combine:
 └─> CAD/EDA (F1–F3) ──> GDSTK ⇄ Qiskit Metal ⇄ (optional) OpenEMS
 
 ```
-*(Provider-agnostic tutor; offline “no‑LLM” paths preserved; headless Blender supported.)* :contentReference[oaicite:8]{index=8}
+*(Provider-agnostic tutor; offline “no‑LLM” paths preserved; headless Blender supported.)* 
 
 ---
 
@@ -111,7 +111,7 @@ Analytically and systematically, we combine:
 
 - **Code**: Apache-2.0; **Educational content**: CC-BY 4.0; **Data**: CC0 where possible.  
 - **Governance**: CONTRIBUTING.md, CODE_OF_CONDUCT.md, issue templates, and a lightweight RFC folder.  
-- **Releases**: Semantic versioning, tagged artifacts, and DOI via Zenodo. :contentReference[oaicite:9]{index=9}
+- **Releases**: Semantic versioning, tagged artifacts, and DOI via Zenodo. 
 
 ---
 
@@ -125,19 +125,19 @@ Analytically and systematically, we combine:
 | 7–8 | **WP-F GDSTK + Metal**: helpers + minimal layout; quizzes for A1–A2 |
 | 9–10 | **OpenEMS hooks (optional)** + A3 VQE mini-lab polish |
 | 11 | Instructor guide; packaging; non-punitive quiz engine full pass |
-| 12 | Public release; showcase renders; application submissions & demos | :contentReference[oaicite:10]{index=10}
+| 12 | Public release; showcase renders; application submissions & demos | 
 
 ---
 
 ## 8) Budget & Funding Map (Mini-Grant Scale)
 
-*(Unchanged in structure; Blender/EDA additions fit within the same mini-grant by scoping demos.)* :contentReference[oaicite:11]{index=11}
+*(Unchanged in structure; Blender/EDA additions fit within the same mini-grant by scoping demos.)* 
 
 ---
 
 ## 9) Eligibility & Program Alignment
 
-*(As drafted; Granite/Hackathon alignment remains apt; Blender and CAD flows improve outreach potential.)* :contentReference[oaicite:12]{index=12}
+*(As drafted; Granite/Hackathon alignment remains apt; Blender and CAD flows improve outreach potential.)* 
 
 ---
 
@@ -149,7 +149,7 @@ Analytically and systematically, we combine:
 | Environment brittleness | Onboarding friction | Colab-first; `requirements.txt`; smoke tests; reproducible seeds |
 | Blender headless differences | Render failures | Provide containerized CLI; test on Linux CI; prebuilt `bpy` mapping |
 | EDA/solver complexity | Setup overhead | Keep OpenEMS optional; ship stubs; provide docker recipes |
-| Scope creep | Delays | MVR gate; six-module cap; backlog triage weekly | :contentReference[oaicite:13]{index=13}
+| Scope creep | Delays | MVR gate; six-module cap; backlog triage weekly | 
 
 ---
 
@@ -158,7 +158,7 @@ Analytically and systematically, we combine:
 - **Adoption**: GitHub stars, forks, unique Colab runs, VTK/ParaView/Blender asset downloads.  
 - **Learning**: Quiz improvement deltas; completion rates; anonymous feedback forms.  
 - **Visualization**: Number of reproducible renders (ParaView/Blender) generated by users.  
-- **Sustainability**: External PRs; issues closed; new maintainers onboarded. :contentReference[oaicite:14]{index=14}
+- **Sustainability**: External PRs; issues closed; new maintainers onboarded. 
 
 ---
 
@@ -167,17 +167,17 @@ Analytically and systematically, we combine:
 - **Docs & Tutorials**: Screen-captures, captions, and written guides for each notebook and Blender pipeline.  
 - **Workshops**: Two online sessions (recorded), one educator roundtable.  
 - **Ecosystem Bridges**: Integration examples for Qiskit; clear “good first issue” tasks.  
-- **Showcases**: Submit to Granite-aligned hackathons; present outcomes publicly. :contentReference[oaicite:15]{index=15}
+- **Showcases**: Submit to Granite-aligned hackathons; present outcomes publicly. 
 
 ---
 
 ## 13) Naming Conventions & Identity Shifts (Counterfactuals)
 
-If hosted-model access were unavailable, we would, practically and transparently, switch to a local instruction-tuned model via **Ollama** and rename the tutor extension to **“Open‑Tutor.”** The *tutor module* identity would change (provider-agnostic), while the *project identity* would remain consistent. :contentReference[oaicite:16]{index=16}
+If hosted-model access were unavailable, we would, practically and transparently, switch to a local instruction-tuned model via **Ollama** and rename the tutor extension to **“Open‑Tutor.”** The *tutor module* identity would change (provider-agnostic), while the *project identity* would remain consistent. 
 
 ---
 
-## 14) Mind-Map (Visible Branches)
+## 14) Mind-Map 
 
 ```
 
@@ -206,7 +206,7 @@ Q-EDU-Forge
 └─ Granite / Ollama (provider-agnostic)
 
 ```
-:contentReference[oaicite:17]{index=17}
+
 
 ---
 
@@ -229,7 +229,7 @@ q-edu-forge/
 └─ LICENSE, CONTRIBUTING, CODE_OF_CONDUCT
 
 ````
-:contentReference[oaicite:18]{index=18}
+
 
 ---
 
@@ -238,7 +238,7 @@ q-edu-forge/
 - [x] Public GitHub repo (Apache-2.0 / CC-BY 4.0).  
 - [x] Two-minute video pitch: goal, audience, demo clip, roadmap (include Blender turntable).  
 - [x] Short form with clear impact statement and openness commitments.  
-- [x] Parallel enrollment in Granite-aligned hackathon for visibility, credits, and prize eligibility. :contentReference[oaicite:19]{index=19}
+- [x] Parallel enrollment in Granite-aligned hackathon for visibility, credits, and prize eligibility. 
 
 ---
 
@@ -262,7 +262,7 @@ q-edu-forge/
 - **QPU** — Quantum Processing Unit.  
 - **SDK** — Software Development Kit.  
 - **VTK** — Visualization Toolkit.  
-- **VQE** — Variational Quantum Eigenvalue method (variational solver for eigenproblems). :contentReference[oaicite:20]{index=20}
+- **VQE** — Variational Quantum Eigenvalue method (variational solver for eigenproblems). 
 
 ---
 
