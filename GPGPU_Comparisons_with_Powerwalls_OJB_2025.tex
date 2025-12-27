@@ -1,0 +1,942 @@
+%-------------------------------------------------------------
+%  main.tex  
+%-------------------------------------------------------------
+\documentclass[11pt]{article}
+
+%--- Packages -------------------------------------------------
+% Added 'landscape' to the options list below
+\usepackage[margin=0.5in, landscape]{geometry} 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{siunitx}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{longtable}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{ragged2e}
+\usepackage{enumitem}
+\usepackage{dirtree} % replaces forest for tree rendering
+\usepackage{microtype}
+\usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
+
+%--- Bibliography (embedded for Overleaf single-file workflow) --
+\begin{filecontents*}{references.bib}
+@online{nvidia_pro6000_server,
+  author  = {{NVIDIA}},
+  title   = {{NVIDIA RTX PRO 6000 Blackwell Server Edition}},
+  year    = {2025},
+  url     = {https://www.nvidia.com/en-us/data-center/rtx-pro-6000-blackwell-server-edition/},
+  urldate = {2025-12-26}
+}
+@online{nvidia_pro6000_workstation_page,
+  author  = {{NVIDIA}},
+  title   = {{NVIDIA RTX PRO 6000 Blackwell Workstation Edition (Product Page)}},
+  year    = {2025},
+  url     = {https://www.nvidia.com/en-us/products/workstations/professional-desktop-gpus/rtx-pro-6000/},
+  urldate = {2025-12-26}
+}
+@online{microcenter_pro6000_price,
+  author  = {{Micro Center}},
+  title   = {{PNY NVIDIA RTX PRO 6000 Blackwell Workstation Edition Dual Fan 96GB GDDR7 PCIe 5.0 Graphics Card (Price Listing)}},
+  year    = {2025},
+  url     = {https://www.microcenter.com/product/694549/pny-nvidia-rtx-pro-6000-blackwell-workstation-edition-dual-fan-96gb-gddr7-pcie-50-graphics-card},
+  urldate = {2025-12-26}
+}
+@online{nvidia_dgx_spark_marketplace,
+  author  = {{NVIDIA}},
+  title   = {{NVIDIA DGX Spark (Marketplace Listing)}},
+  year    = {2025},
+  url     = {https://marketplace.nvidia.com/en-us/enterprise/personal-ai-supercomputers/dgx-spark/},
+  urldate = {2025-12-26}
+}
+@online{nvidia_dgx_spark_specs,
+  author  = {{NVIDIA}},
+  title   = {{NVIDIA DGX Spark (Product Page) -- Specifications}},
+  year    = {2025},
+  url     = {https://www.nvidia.com/en-us/products/workstations/dgx-spark/},
+  urldate = {2025-12-26}
+}
+@online{nvidia_dgx_spark_hw_guide,
+  author  = {{NVIDIA}},
+  title   = {{Hardware Overview --- DGX Spark User Guide}},
+  year    = {2025},
+  url     = {https://docs.nvidia.com/dgx/dgx-spark/hardware.html},
+  urldate = {2025-12-26}
+}
+@online{nvidia_a6000_page,
+  author  = {{NVIDIA}},
+  title   = {{NVIDIA RTX A6000 (Product Page)}},
+  year    = {2021},
+  url     = {https://www.nvidia.com/en-us/products/workstations/rtx-a6000/},
+  urldate = {2025-12-26}
+}
+@online{pny_a6000_specs,
+  author  = {{PNY}},
+  title   = {{PNY NVIDIA RTX A6000 -- Specifications}},
+  year    = {2021},
+  url     = {https://www.pny.com/nvidia-rtx-a6000},
+  urldate = {2025-12-26}
+}
+@online{nvidia_a5000_page,
+  author  = {{NVIDIA}},
+  title   = {{NVIDIA RTX A5000 (Product Page)}},
+  year    = {2021},
+  url     = {https://www.nvidia.com/en-us/products/workstations/rtx-a5000/},
+  urldate = {2025-12-26}
+}
+@online{nvidia_ampere_linecard,
+  author  = {{NVIDIA}},
+  title   = {{NVIDIA Professional Graphics Solutions Linecard (Ampere)}},
+  year    = {2022},
+  url     = {https://www.nvidia.com/content/dam/en-zz/Solutions/gtcs22/design-visualization/quadro-product-literature/quadro-ampere-linecard-us-nvidia-web.pdf},
+  urldate = {2025-12-26}
+}
+@online{a5000_tensor_perf_forum,
+  author  = {{NVIDIA Developer Forums}},
+  title   = {{Looking for full specs on NVIDIA A5000 (includes FP32 and Tensor throughput figures)}},
+  year    = {2022},
+  url     = {https://forums.developer.nvidia.com/t/looking-for-full-specs-on-nvidia-a5000/217948},
+  urldate = {2025-12-26}
+}
+@online{a6000_price_tomshardware,
+  author  = {{Tom's Hardware}},
+  title   = {{Nvidia's RTX A6000: 48GB of Memory Powers Twice The Workstation Performance of RTX 3090}},
+  year    = {2021},
+  url     = {https://www.tomshardware.com/news/nvidia-rtx-a6000-48gb-benchmarked},
+  urldate = {2025-12-26}
+}
+@online{a5000_price_aecmag,
+  author  = {{AEC Magazine}},
+  title   = {{Nvidia RTX A4000 review / RTX A5000 review (street-price context)}},
+  year    = {2021},
+  url     = {https://aecmag.com/workstations/nvidia-rtx-a4000-review-nvidia-rtx-a5000-review-arch-viz-ray-tracing/},
+  urldate = {2025-12-26}
+}
+@online{ampere_ga102_whitepaper,
+  author  = {{NVIDIA}},
+  title   = {{NVIDIA Ampere GA102 GPU Architecture Whitepaper}},
+  year    = {2020},
+  url     = {https://www.nvidia.com/content/PDF/nvidia-ampere-ga-102-gpu-architecture-whitepaper-v2.pdf},
+  urldate = {2025-12-26}
+}
+@online{nvidia_structured_sparsity_blog,
+  author  = {{NVIDIA Developer Blog}},
+  title   = {{Structured Sparsity in the NVIDIA Ampere Architecture and Applications in Search Engines}},
+  year    = {2023},
+  url     = {https://developer.nvidia.com/blog/structured-sparsity-in-the-nvidia-ampere-architecture-and-applications-in-search-engines/},
+  urldate = {2025-12-26}
+}
+@online{nvidia_tf32_blog,
+  author  = {{NVIDIA Developer Blog}},
+  title   = {{Accelerating AI Training with NVIDIA TF32 Tensor Cores}},
+  year    = {2021},
+  url     = {https://developer.nvidia.com/blog/accelerating-ai-training-with-tf32-tensor-cores/},
+  urldate = {2025-12-26}
+}
+@article{mishra2021sparsetensorcores,
+  author  = {Mishra, Asit and others},
+  title   = {Design and Behavior of Sparse Tensor Cores},
+  year    = {2021},
+  journal = {arXiv},
+  url     = {https://arxiv.org/pdf/2104.08378},
+  urldate = {2025-12-26}
+}
+@online{nccl_paper_2025,
+  author  = {Jiang, Xinyue and others},
+  title   = {Demystifying NCCL: An In-depth Analysis of GPU Communication Collectives},
+  year    = {2025},
+  url     = {https://arxiv.org/html/2507.04786v1},
+  urldate = {2025-12-26}
+}
+@online{pcisig_faq_pcie5,
+  author  = {{PCI-SIG}},
+  title   = {{PCIe 5.0 FAQ (raw bandwidth per lane)}},
+  year    = {2025},
+  url     = {https://pcisig.com/faq?field_category_value%5B%5D=pci_express_5.0&keys=},
+  urldate = {2025-12-26}
+}
+@online{nrel_pue,
+  author  = {{National Renewable Energy Laboratory (NREL)}},
+  title   = {{High-Performance Computing Data Center Power Usage Effectiveness (PUE)}},
+  year    = {2025},
+  url     = {https://www.nrel.gov/computational-science/measuring-efficiency-pue},
+  urldate = {2025-12-26}
+}
+@online{uptime_survey_2024,
+  author  = {{Uptime Institute}},
+  title   = {{Uptime Institute Global Data Center Survey 2024 (PUE statistic)}},
+  year    = {2024},
+  url     = {https://datacenter.uptimeinstitute.com/rs/711-RIA-145/images/2024.GlobalDataCenterSurvey.Report.pdf},
+  urldate = {2025-12-26}
+}
+@online{tesla_powerwall3_datasheet,
+  author  = {{Tesla}},
+  title   = {{Powerwall 3 Datasheet}},
+  year    = {2025},
+  url     = {https://energylibrary.tesla.com/docs/Public/EnergyStorage/Powerwall/3/Datasheet/en-us/Powerwall-3-Datasheet.pdf},
+  urldate = {2025-12-26}
+}
+@online{powerwall3_pricing_solarreviews,
+  author  = {{SolarReviews}},
+  title   = {{Tesla Powerwall price breakdown (Powerwall 3)}},
+  year    = {2025},
+  url     = {https://www.solarreviews.com/blog/is-the-tesla-powerwall-the-best-solar-battery-available},
+  urldate = {2025-12-26}
+}
+@online{dgx_spark_power_forum,
+  author  = {{NVIDIA Developer Forums}},
+  title   = {{DGX Spark Power Clarification (240W PSU; 140W SoC TDP)}},
+  year    = {2025},
+  url     = {https://forums.developer.nvidia.com/t/dgx-spark-power-clarification/349668},
+  urldate = {2025-12-26}
+}
+\end{filecontents*}
+
+\addbibresource{references.bib}
+
+%--- siunitx setup -------------------------------------------
+\sisetup{
+  detect-weight=true,
+  detect-family=true,
+  group-separator={,},
+  group-minimum-digits=4
+}
+
+% Define custom units (use "/s" explicitly to reduce ambiguity)
+\DeclareSIUnit{\TFLOPs}{TFLOP/s}
+\DeclareSIUnit{\PFLOPs}{PFLOP/s}
+\DeclareSIUnit{\GBps}{GB/s}
+\DeclareSIUnit{\TBps}{TB/s}
+\DeclareSIUnit{\USDunit}{USD}
+
+% Handle specific unicode characters if they persist
+\DeclareUnicodeCharacter{202F}{\thinspace}
+%--- Longtable width control and ragged columns --------------
+\setlength{\LTleft}{0pt}
+\setlength{\LTright}{0pt}
+\setlength{\emergencystretch}{2em}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\Centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\RaggedLeft\arraybackslash}p{#1}}
+
+% Compact first column (roughly ~8--10 characters in \small at 12pt)
+\newcommand{\FirstColW}{0.11\textwidth}
+
+
+
+%--- Simple shortcuts ----------------------------------------
+\newcommand{\kW}{\si{\kilo\watt}}
+\newcommand{\USD}[1]{\$\num{#1}}
+\newcommand{\Powerwall}{Tesla Powerwall~3}
+
+% Custom Star Rating command
+\newcommand{\starscore}[1]{%
+  \ifcase#1\relax \phantom{$\star$}\phantom{$\star$}\phantom{$\star$}\phantom{$\star$}\phantom{$\star$}%
+  \or $\star$\phantom{$\star$}\phantom{$\star$}\phantom{$\star$}\phantom{$\star$}%
+  \or $\star\star$\phantom{$\star$}\phantom{$\star$}\phantom{$\star$}%
+  \or $\star\star\star$\phantom{$\star$}\phantom{$\star$}%
+  \or $\star\star\star\star$\phantom{$\star$}%
+  \or $\star\star\star\star\star$%
+  \fi%
+}
+
+%--- Document -------------------------------------------------
+\begin{document}
+
+\title{GPGPU Comparison for \\ Local AI \& Scientific Computing\\
+\vspace{0.2cm}
+\large{NVIDIA Blackwell (RTX PRO 6000), Grace Blackwell (DGX Spark), \\ and NVIDIA Ampere (RTX A6000/ RTX A5000)}\\
+\vspace{0.2cm}
+\large{Reference Budget: \\ \USD{150000} (GPU or appliance procurement) + Off-Grid Energy Infrastructure}
+}
+\author{Onri Jay Benally}
+\date{December 17, 2025}
+\maketitle
+
+\begin{abstract}
+This document covers a procurement-oriented comparison of four NVIDIA GPU pathways under a fixed \USD{150000} reference budget, while explicitly separating (i) peak theoretical accelerator metrics, (ii) deployable system-level constraints, and (iii) off-grid energy sizing. It includes device specifications, derived cost-and-power efficiency metrics, interconnect and scaling implications, and battery-sizing sensitivity to facility power usage effectiveness (Power Usage Effectiveness, PUE), auxiliary ``host'' overhead, and storage efficiency assumptions. All quantitative claims are sourced from vendor documentation, technical literature, or publicly visible pricing references.
+\end{abstract}
+
+\clearpage
+\tableofcontents
+
+\clearpage
+\listoftables
+\clearpage
+
+%-------------------------------------------------------------
+\section{Scope, definitions, and assumptions}
+
+\subsection{Intuitive explanation}
+A graphics processing unit (GPU) is, in practice, a massively parallel chip originally designed to draw images quickly, but now used for general-purpose computing. General-Purpose computing on Graphics Processing Units (GPGPU) means taking problems that can be split into many similar calculations and running them across thousands of small compute units. In machine learning, those calculations are usually large matrix multiplications; in scientific computing, they are often stencil updates, particle interactions, or batched linear algebra.
+
+\subsection{Framing: performance claims are typed, not scalar}
+Vendor ``throughput'' numbers are typed by \emph{precision format}, \emph{operation mix}, and sometimes by \emph{sparsity assumptions}. A peak value like ``\SI{4}{\PFLOPs} FP4 (with sparsity)'' is not interchangeable with ``\SI{120}{\TFLOPs} FP32,'' because the former assumes (i) a low-precision format and (ii) a 2:4 structured sparsity pattern that can, in theory, double Tensor Core throughput relative to dense execution \cite{nvidia_structured_sparsity_blog,ampere_ga102_whitepaper,mishra2021sparsetensorcores}. In other words, if you cannot or do not enforce 2:4 sparsity in weights (or activations where supported), the headline sparse peak is not physically reachable, and you should model your expected throughput as closer to the dense case, typically by dividing the sparse peak by roughly two.
+
+\subsection{Reference budget and what it does \emph{not} include}
+The \USD{150000} reference budget is treated as accelerator or appliance procurement only, to maintain comparability with the earlier draft. In real deployments, a complete system also needs:
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+  \item CPU platforms (and their memory bandwidth), storage, networking, racks, and power distribution.
+  \item Cooling infrastructure and facility overhead (captured approximately by PUE).
+  \item Software and operational overhead (driver qualification, imaging, monitoring).
+\end{itemize}
+These omissions are addressed explicitly in Sections \ref{sec:topology_scaling} and \ref{sec:energy_offgrid} as sensitivity factors, rather than being hidden.
+
+\subsection{Pricing, power, and energy-storage assumptions}
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+  \item \textbf{Prices:} Reference prices are sourced from vendor listings or widely cited launch/market context. The RTX PRO 6000 Blackwell Workstation Edition uses an observed retail listing price; DGX Spark uses NVIDIA Marketplace pricing; Ampere cards use widely cited launch-era reference pricing. Prices are time-varying by nature. See Table \ref{tab:price_assumptions}.
+  \item \textbf{Nameplate power:} For safety margins, maximum power (or power supply rating, in the case of DGX Spark) is used. The RTX PRO 6000 Blackwell Server Edition is listed up to \SI{600}{\watt} \cite{nvidia_pro6000_server}; RTX A6000 is \SI{300}{\watt} \cite{nvidia_a6000_page}; RTX A5000 is \SI{230}{\watt} \cite{nvidia_a5000_page}; DGX Spark power supply is \SI{240}{\watt} \cite{nvidia_dgx_spark_specs,nvidia_dgx_spark_hw_guide}.
+  \item \textbf{Battery:} \Powerwall\ nominal energy is \SI{13.5}{\kilo\watt\hour}, and it can deliver up to \SI{11.5}{\kilo\watt} continuous AC power per unit (configuration-dependent) \cite{tesla_powerwall3_datasheet}. The earlier draft assumed \USD{8200} installed per Powerwall; real installed pricing varies widely, and published breakdowns often exceed the battery-only line item \cite{powerwall3_pricing_solarreviews}. To preserve the earlier framing, \USD{8200} per unit is retained as a comparability knob.
+  \item \textbf{Duty cycle:} An 8-hour continuous-load off-grid run defines the energy pool requirement.
+\end{itemize}
+
+%-------------------------------------------------------------
+\section{Device-level specification snapshots}
+
+\begingroup
+\small
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.00}
+\begin{longtable}{@{}L{\FirstColW}L{0.20\textwidth}L{0.195\textwidth}L{0.2\textwidth}L{0.248\textwidth}@{}} 
+\caption{Device specifications (representative, vendor-specified peak metrics).}\label{tab:device_specs}\\
+\toprule
+\textbf{Device} &
+\textbf{AI/ Tensor Peak} &
+\textbf{FP32 Peak (dense)} &
+\textbf{Memory (type, capacity)} &
+\textbf{Power + interconnect notes} \\
+\midrule
+\endfirsthead
+\caption[]{Device specifications (representative, vendor-specified peak metrics). (continued)}\\
+\toprule
+\textbf{Device} &
+\textbf{AI/ Tensor Peak} &
+\textbf{FP32 Peak (dense)} &
+\textbf{Memory (type, capacity)} &
+\textbf{Power + interconnect notes} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+RTX PRO 6000 Blackwell &
+\SI{4}{\PFLOPs} FP4 \newline (with sparsity) \cite{nvidia_pro6000_server} &
+\SI{120}{\TFLOPs} \cite{nvidia_pro6000_server} &
+\SI{96}{GB} GDDR7 ECC; \SI{1597}{\GBps} (server listing) \cite{nvidia_pro6000_server} &
+Up to \SI{600}{\watt}; PCIe Gen 5 x16; supports Multi-Instance GPU (MIG) up to 4 instances @ 24GB \cite{nvidia_pro6000_server} \\
+\addlinespace
+DGX Spark (GB10 Grace Blackwell) &
+\SI{1}{\PFLOPs} FP4 \newline (theoretical, with sparsity) \newline \cite{nvidia_dgx_spark_marketplace,nvidia_dgx_spark_specs} &
+--- &
+\SI{128}{GB} LPDDR5x coherent \newline unified system memory; \SI{273}{\GBps} \cite{nvidia_dgx_spark_marketplace,nvidia_dgx_spark_specs} &
+\SI{240}{\watt} PSU; SoC TDP \SI{140}{\watt} \cite{nvidia_dgx_spark_hw_guide,dgx_spark_power_forum}; integrated CPU+GPU; includes ConnectX-7 NIC \cite{nvidia_dgx_spark_marketplace} \\
+\addlinespace
+RTX A6000 \newline (Ampere) &
+\SI{309.7}{\TFLOPs} Tensor \newline (peak) \cite{pny_a6000_specs} &
+\SI{38.7}{\TFLOPs} \cite{pny_a6000_specs} &
+\SI{48}{GB} GDDR6 ECC; \SI{768}{\GBps} \cite{pny_a6000_specs} &
+Max \SI{300}{\watt}; PCIe Gen 4 x16; 2-way NVLink bridge option \cite{nvidia_a6000_page} \\
+\addlinespace
+RTX A5000 \newline (Ampere) &
+\SI{222.2}{\TFLOPs} Tensor \newline (peak) \cite{a5000_tensor_perf_forum,nvidia_ampere_linecard} &
+\SI{27.8}{\TFLOPs} \cite{a5000_tensor_perf_forum,nvidia_ampere_linecard} &
+\SI{24}{GB} GDDR6 ECC; \SI{768}{\GBps} \cite{nvidia_ampere_linecard} &
+Max \SI{230}{\watt}; PCIe Gen 4 x16; 2-way NVLink bridge option \cite{nvidia_a5000_page} \\
+\end{longtable}
+\endgroup
+
+%-------------------------------------------------------------
+\section{Price assumptions and budget arithmetic}
+
+\begingroup
+\small
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtable}{@{}L{\FirstColW}R{0.18\textwidth}L{0.20\textwidth}L{0.45\textwidth}@{}}
+\caption{Reference price assumptions (time-varying by nature).}\label{tab:price_assumptions}\\
+\toprule
+\textbf{Device} & \textbf{Reference Unit Price} & \textbf{Source Type} & \textbf{Reference} \\
+\midrule
+\endfirsthead
+\caption[]{Reference price assumptions (time-varying by nature). (continued)}\\
+\toprule
+\textbf{Device} & \textbf{Reference Unit Price} & \textbf{Source Type} & \textbf{Reference} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+RTX PRO 6000 Blackwell \newline (Workstation) & \USD{8999.99} & Retail listing & \cite{microcenter_pro6000_price} \\
+DGX Spark \newline (appliance) & \USD{3999.00} & NVIDIA Marketplace & \cite{nvidia_dgx_spark_marketplace} \\
+RTX A6000 \newline (Ampere) & \USD{4650.00} & Launch/market context & \cite{a6000_price_tomshardware} \\
+RTX A5000 \newline (Ampere) & \USD{2500.00} & Conservative ``street'' knob & \cite{a5000_price_aecmag} \\
+\end{longtable}
+\endgroup
+
+\paragraph{Note on ``MSRP'' vs ``list'' vs ``street.''}
+Workstation-class accelerators are frequently sold through OEM and distribution channels, where prices drift with availability, warranty terms, and regional procurement. For this reason, Tables \ref{tab:budget_aggregate}--\ref{tab:efficiency_metrics} should be treated as a \emph{reference envelope}, not a price guarantee.
+
+%-------------------------------------------------------------
+\clearpage
+\section{Aggregate compute, memory, and bandwidth under a \USD{150000} reference spend}
+
+\begingroup
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{longtable}{@{}L{\FirstColW}R{0.07\textwidth}R{0.12\textwidth}L{0.15\textwidth}L{0.12\textwidth}L{0.15\textwidth}L{0.22\textwidth}@{}}
+\caption{Aggregates under \USD{150000} procurement (accelerator/appliance-only).}\label{tab:budget_aggregate}\\
+\toprule
+\textbf{Solution} &
+\textbf{Units} &
+\textbf{Leftover Budget} &
+\textbf{Total AI Peak} &
+\textbf{Total FP32 Peak} &
+\textbf{Total Memory Pool} &
+\textbf{Total Memory BW} \\
+\midrule
+\endfirsthead
+\caption[]{Aggregates under \USD{150000} procurement (accelerator/appliance-only framing). (continued)}\\
+\toprule
+\textbf{Solution} &
+\textbf{Units} &
+\textbf{Leftover Budget} &
+\textbf{Total AI Peak} &
+\textbf{Total FP32 Peak} &
+\textbf{Total Memory Pool} &
+\textbf{Total Memory BW} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+RTX PRO 6000 Blackwell &
+16 &
+\USD{6000.16} &
+\SI{64.0}{\PFLOPs} \newline (FP4, sparse) &
+\SI{1920}{\TFLOPs} &
+\SI{1536}{GB} (GDDR7) &
+\SI{25.552}{\TBps} \\
+DGX Spark &
+37 &
+\USD{2037.00} &
+\SI{37.0}{\PFLOPs} \newline (FP4, sparse) &
+--- &
+\SI{4736}{GB} \newline (unified system memory) &
+\SI{10.101}{\TBps} \\
+RTX A6000 &
+32 &
+\USD{1200.00} &
+\SI{9.9104}{\PFLOPs} \newline (Tensor peak) &
+\SI{1238.4}{\TFLOPs} &
+\SI{1536}{GB} (GDDR6) &
+\SI{24.576}{\TBps} \\
+RTX A5000 &
+60 &
+\USD{0.00} &
+\SI{13.332}{\PFLOPs} \newline (Tensor peak) &
+\SI{1668}{\TFLOPs} &
+\SI{1440}{GB} (GDDR6) &
+\SI{46.080}{\TBps} \\
+\end{longtable}
+\endgroup
+
+\paragraph{Interpretation guardrails.}
+The DGX Spark ``memory pool'' is distributed across 37 separate systems; it is not a single shared coherent pool across all units. Conversely, the PRO 6000 and Ampere cards are discrete accelerators whose effective pool for a \emph{single} model shard depends on per-node GPU count, NVLink availability, and distributed training strategy (data parallel, tensor parallel, pipeline parallel).
+
+%-------------------------------------------------------------
+\section{Derived efficiency metrics (per-dollar, per-watt, and per-GB)}
+\label{sec:efficiency_metrics}
+
+\begingroup
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtable}{@{}L{\FirstColW}L{0.12\textwidth}L{0.12\textwidth}L{0.12\textwidth}L{0.10\textwidth}L{0.12\textwidth}L{0.25\textwidth}@{}}
+\caption{Per-unit derived metrics (using reference prices and nameplate power).}\label{tab:efficiency_metrics}\\
+\toprule
+\textbf{Device} &
+\textbf{AI Peak/ \$} &
+\textbf{AI Peak/ kW} &
+\textbf{FP32/ kW} &
+\textbf{GB/ \$} &
+\textbf{GB/s / W} &
+\textbf{Comment} \\
+\midrule
+\endfirsthead
+\caption[]{Per-unit derived metrics (using reference prices and nameplate power). (continued)}\\
+\toprule
+\textbf{Device} &
+\textbf{AI Peak/ \$} &
+\textbf{AI Peak/ kW} &
+\textbf{FP32/ kW} &
+\textbf{GB/ \$} &
+\textbf{GB/s / W} &
+\textbf{Comment} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+RTX PRO 6000 Blackwell &
+$4/8999.99 = 4.44\times 10^{-4}$ \si{\PFLOPs\per\USDunit} &
+$4/0.6 = 6.67$ \si{\PFLOPs\per\kW} &
+$120/0.6 = 200$ \si{\TFLOPs\per\kW} &
+$96/8999.99=0.0107$ \si{\giga\byte\per\USDunit} &
+$1597/600=2.66$ \si{\giga\byte\per\second\per\watt} &
+Peak AI assumes 2:4 sparsity \cite{nvidia_pro6000_server,nvidia_structured_sparsity_blog} \\
+\addlinespace
+DGX Spark &
+$1/3999 = 2.50\times 10^{-4}$ \si{\PFLOPs\per\USDunit} &
+$1/0.24 = 4.17$ \si{\PFLOPs\per\kW} &
+--- &
+$128/3999=0.0320$ \si{\giga\byte\per\USDunit} &
+$273/240=1.14$ \si{\giga\byte\per\second\per\watt} &
+Includes CPU+GPU+NIC; power is PSU rating \cite{nvidia_dgx_spark_specs,nvidia_dgx_spark_hw_guide} \\
+\addlinespace
+RTX A6000 &
+$0.3097/4650 = 6.66\times 10^{-5}$ \si{\PFLOPs\per\USDunit} &
+$0.3097/0.3 = 1.03$ \si{\PFLOPs\per\kW} &
+$38.7/0.3 = 129$ \si{\TFLOPs\per\kW} &
+$48/4650=0.0103$ \si{\giga\byte\per\USDunit} &
+$768/300=2.56$ \si{\giga\byte\per\second\per\watt} &
+Useful when per-GPU memory size matters more than raw GPU count \cite{pny_a6000_specs} \\
+\addlinespace
+RTX A5000 &
+$0.2222/2500 = 8.89\times 10^{-5}$ \si{\PFLOPs\per\USDunit} &
+$0.2222/0.23 = 0.97$ \si{\PFLOPs\per\kW} &
+$27.8/0.23 = 121$ \si{\TFLOPs\per\kW} &
+$24/2500=0.0096$ \si{\giga\byte\per\USDunit} &
+$768/230=3.34$ \si{\giga\byte\per\second\per\watt} &
+Often bandwidth-rich per-dollar, but increases management and network \newline complexity \cite{nvidia_ampere_linecard} \\
+\end{longtable}
+\endgroup
+
+%-------------------------------------------------------------
+
+\section{Topology, scaling, and communication overhead}
+\label{sec:topology_scaling}
+
+\subsection{Why topology dominates beyond ``how many FLOPs''}
+When you scale from 1 GPU to many GPUs, the system increasingly becomes a communication machine. Gradient synchronization, tensor-parallel all-reduces, and activation checkpointing traffic can dominate wall-clock time. NVIDIA Collective Communication Library (NCCL) implements multiple collective algorithms, and its scaling behavior depends on the interconnect (PCIe vs NVLink vs network) and on GPU count \cite{nccl_paper_2025}. In other words, if your bottleneck is all-reduce bandwidth, buying more GPUs without improving interconnect can increase cost while reducing realized performance.
+
+\subsection{PCI Express (PCIe) generations and why Gen 5 matters here}
+PCI Express 5.0 supports 32.0~GT/s per lane per direction of raw bandwidth \cite{pcisig_faq_pcie5}. Increasing generation primarily changes achievable host-to-device and peer-to-peer transfer capacity. In practice, this matters when:
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+  \item Your workload streams data from host memory or storage (data pipelines, out-of-core training).
+  \item Your model is too large for single-GPU memory and relies on frequent transfers.
+  \item You are operating without NVLink and therefore depend on PCIe peer-to-peer.
+\end{itemize}
+
+\subsection{``Minimum viable cluster'' sketches (not budgeted, but operationally decisive)}
+To avoid hiding practical deployment burden, Table \ref{tab:cluster_sketch} sketches plausible packaging. These sketches do not add cost into the \USD{150000} procurement number; rather, they highlight that the operational footprint differs radically.
+
+\begingroup
+\small
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtable}{@{}L{\FirstColW}L{0.26\textwidth}L{0.30\textwidth}L{0.27\textwidth}@{}}
+\caption{Cluster packaging sketches (illustrative).}\label{tab:cluster_sketch}\\
+\toprule
+\textbf{Solution} & \textbf{Likely packaging} & \textbf{Scaling constraints} & \textbf{Operational notes} \\
+\midrule
+\endfirsthead
+\caption[]{Cluster packaging sketches (illustrative, not priced). (continued)}\\
+\toprule
+\textbf{Solution} & \textbf{Likely packaging} & \textbf{Scaling constraints} & \textbf{Operational notes} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+RTX PRO 6000 Blackwell \newline (16 GPUs) &
+2 $\times$ 8-GPU PCIe Gen 5 servers, or 4 $\times$ 4-GPU workstations &
+Without NVSwitch-class fabrics, cross-node collectives are network-limited; within-node depends on PCIe/NVLink availability &
+High power density (\SI{600}{\watt} class GPUs) pushes liquid cooling sooner; fewer GPUs reduces management overhead \\
+\addlinespace
+DGX Spark \newline (37 units) &
+37 mini-systems plus top-of-rack switching (and power distribution) &
+Distributed training becomes ``small-node'' and network-heavy; local per-box memory is large but fragmented &
+Excellent for prototyping and inference farms; less ideal for tightly coupled multi-GPU training \\
+\addlinespace
+RTX A6000 \newline (32 GPUs) &
+4 $\times$ 8-GPU PCIe Gen 4 servers, or 8 $\times$ 4-GPU workstations &
+2-way NVLink helps only within paired GPUs; scaling beyond 2 GPUs requires PCIe/network collectives &
+Large per-GPU VRAM improves shard size, reducing communication volume for some parallelization schemes \\
+\addlinespace
+RTX A5000 \newline (60 GPUs) &
+7 $\times$ 8-GPU servers plus 1 $\times$ 4-GPU node (or many smaller nodes) &
+Many-GPU management overhead, and network becomes the bottleneck quickly &
+Attractive on aggregate bandwidth and FP32, but complexity is a first-order cost \\
+\end{longtable}
+\endgroup
+
+%-------------------------------------------------------------
+\section{Energy infrastructure, off-grid feasibility, and sustainability}
+\label{sec:energy_offgrid}
+
+\subsection{Power Usage Effectiveness (PUE) and why it belongs in off-grid math}
+PUE is defined as total facility power divided by IT equipment power. For many facilities, average PUE has historically hovered around roughly 1.5--1.6, while highly optimized facilities can achieve near 1.2 or lower \cite{uptime_survey_2024,nrel_pue}. In off-grid contexts, PUE is not just a ``data center'' concept; it captures everything you must power beyond the chips (cooling, power distribution losses, pumps, fans, controllers).
+
+\subsection{Battery sizing equations}
+Let $P_{\mathrm{IT}}$ be the nameplate IT load (kW), $f_{\mathrm{host}}$ be a multiplier for non-GPU overhead (CPU, RAM, storage, networking), and $\mathrm{PUE}$ capture facility overhead. The 8-hour energy is:
+\[
+E_{\mathrm{8h}} = P_{\mathrm{IT}}\; f_{\mathrm{host}}\; \mathrm{PUE}\; t
+\]
+To map this to required battery energy, include an overall discharge-path efficiency $\eta$ and a planning depth-of-discharge $\mathrm{DoD}$:
+\[
+E_{\mathrm{battery}} = \frac{E_{\mathrm{8h}}}{\eta\;\mathrm{DoD}}
+\]
+Powerwall count is then $\lceil E_{\mathrm{battery}} / 13.5\;\mathrm{kWh}\rceil$ \cite{tesla_powerwall3_datasheet}.
+
+\subsection{Results: optimistic vs engineering vs ``legacy-room''}
+Table \ref{tab:energy_scenarios} shows three scenarios. The earlier draft roughly corresponds to the optimistic case (nameplate-only, no losses). The engineering and legacy-room cases are intended as conservative electrical engineering planning baselines, not as worst-case fear.
+
+\begingroup
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{longtable}{@{}L{\FirstColW}L{0.35\textwidth}R{0.10\textwidth}R{0.08\textwidth}R{0.09\textwidth}R{0.10\textwidth}R{0.085\textwidth}@{}}
+\caption{Off-grid feasibility (8-hour run) under multiple facility assumptions.}\label{tab:energy_scenarios}\\
+\toprule
+\textbf{Build} &
+\textbf{Scenario} &
+\textbf{IT Power} &
+\textbf{Facility \newline Power} &
+\textbf{8h Energy} &
+\textbf{Battery \newline Energy Req.} &
+\textbf{Powerwalls} \\
+\midrule
+\endfirsthead
+\caption[]{Off-grid feasibility (8-hour run) under multiple facility assumptions. (continued)}\\
+\toprule
+\textbf{Build} &
+\textbf{Scenario} &
+\textbf{IT Power} &
+\textbf{Facility Power} &
+\textbf{8h Energy} &
+\textbf{Battery Energy Req.} &
+\textbf{Powerwalls} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+RTX PRO 6000 Blackwell &
+Optimistic (no losses) &
+\SI{9.60}{\kilo\watt} &
+\SI{9.60}{\kilo\watt} &
+\SI{76.8}{\kilo\watt\hour} &
+\SI{76.8}{\kilo\watt\hour} &
+6 \\
+RTX PRO 6000 Blackwell &
+Engineering ($f_{\mathrm{host}}=1.25$, PUE=1.2, $\eta=0.90$, DoD=0.90) &
+\SI{9.60}{\kilo\watt} &
+\SI{14.40}{\kilo\watt} &
+\SI{115.2}{\kilo\watt\hour} &
+\SI{142.22}{\kilo\watt\hour} &
+11 \\
+RTX PRO 6000 Blackwell &
+Legacy-room ($f_{\mathrm{host}}=1.25$, PUE=1.56, $\eta=0.90$, DoD=0.90) &
+\SI{9.60}{\kilo\watt} &
+\SI{18.72}{\kilo\watt} &
+\SI{149.76}{\kilo\watt\hour} &
+\SI{184.89}{\kilo\watt\hour} &
+14 \\
+\addlinespace
+DGX Spark &
+Optimistic (nameplate only) &
+\SI{8.88}{\kilo\watt} &
+\SI{8.88}{\kilo\watt} &
+\SI{71.04}{\kilo\watt\hour} &
+\SI{71.04}{\kilo\watt\hour} &
+6 \\
+DGX Spark &
+Engineering (PUE=1.2, $\eta=0.90$, DoD=0.90; host included) &
+\SI{8.88}{\kilo\watt} &
+\SI{10.66}{\kilo\watt} &
+\SI{85.25}{\kilo\watt\hour} &
+\SI{105.24}{\kilo\watt\hour} &
+8 \\
+DGX Spark &
+Legacy-room (PUE=1.56, $\eta=0.90$, DoD=0.90; host included) &
+\SI{8.88}{\kilo\watt} &
+\SI{13.85}{\kilo\watt} &
+\SI{110.85}{\kilo\watt\hour} &
+\SI{136.82}{\kilo\watt\hour} &
+11 \\
+\addlinespace
+RTX A6000 &
+Optimistic (no losses) &
+\SI{9.60}{\kilo\watt} &
+\SI{9.60}{\kilo\watt} &
+\SI{76.8}{\kilo\watt\hour} &
+\SI{76.8}{\kilo\watt\hour} &
+6 \\
+RTX A6000 &
+Engineering ($f_{\mathrm{host}}=1.25$, PUE=1.2, $\eta=0.90$, DoD=0.90) &
+\SI{9.60}{\kilo\watt} &
+\SI{14.40}{\kilo\watt} &
+\SI{115.2}{\kilo\watt\hour} &
+\SI{142.22}{\kilo\watt\hour} &
+11 \\
+RTX A6000 &
+Legacy-room ($f_{\mathrm{host}}=1.25$, PUE=1.56, $\eta=0.90$, DoD=0.90) &
+\SI{9.60}{\kilo\watt} &
+\SI{18.72}{\kilo\watt} &
+\SI{149.76}{\kilo\watt\hour} &
+\SI{184.89}{\kilo\watt\hour} &
+14 \\
+\addlinespace
+RTX A5000 &
+Optimistic (no losses) &
+\SI{13.80}{\kilo\watt} &
+\SI{13.80}{\kilo\watt} &
+\SI{110.4}{\kilo\watt\hour} &
+\SI{110.4}{\kilo\watt\hour} &
+9 \\
+RTX A5000 &
+Engineering ($f_{\mathrm{host}}=1.25$, PUE=1.2, $\eta=0.90$, DoD=0.90) &
+\SI{13.80}{\kilo\watt} &
+\SI{20.70}{\kilo\watt} &
+\SI{165.6}{\kilo\watt\hour} &
+\SI{204.44}{\kilo\watt\hour} &
+16 \\
+RTX A5000 &
+Legacy-room ($f_{\mathrm{host}}=1.25$, PUE=1.56, $\eta=0.90$, DoD=0.90) &
+\SI{13.80}{\kilo\watt} &
+\SI{26.91}{\kilo\watt} &
+\SI{215.28}{\kilo\watt\hour} &
+\SI{265.78}{\kilo\watt\hour} &
+20 \\
+\end{longtable}
+\endgroup
+
+\subsection{Total CapEx: hardware + storage (using \USD{8200} per Powerwall as a knob)}
+\begingroup
+\small
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtable}{@{}L{\FirstColW}L{0.51\textwidth}R{0.12\textwidth}R{0.20\textwidth}@{}}
+\caption{Total CapEx with \Powerwall\ storage (illustrative; assumes \USD{8200} per unit).}\label{tab:capex_storage}\\
+\toprule
+\textbf{Build} & \textbf{Scenario} & \textbf{Powerwalls} & \textbf{Total CapEx} \\
+\midrule
+\endfirsthead
+\caption[]{Total CapEx with \Powerwall\ storage (illustrative; assumes \USD{8200} per unit). (continued)}\\
+\toprule
+\textbf{Build} & \textbf{Scenario} & \textbf{Powerwalls} & \textbf{Total CapEx} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+RTX PRO 6000 Blackwell & Optimistic & 6 & \USD{199200} \\
+RTX PRO 6000 Blackwell & Engineering & 11 & \USD{240200} \\
+RTX PRO 6000 Blackwell & Legacy-room & 14 & \USD{264800} \\
+\addlinespace
+DGX Spark & Optimistic & 6 & \USD{199200} \\
+DGX Spark & Engineering & 8 & \USD{215600} \\
+DGX Spark & Legacy-room & 11 & \USD{240200} \\
+\addlinespace
+RTX A6000 & Optimistic & 6 & \USD{199200} \\
+RTX A6000 & Engineering & 11 & \USD{240200} \\
+RTX A6000 & Legacy-room & 14 & \USD{264800} \\
+\addlinespace
+RTX A5000 & Optimistic & 9 & \USD{223800} \\
+RTX A5000 & Engineering & 16 & \USD{281200} \\
+RTX A5000 & Legacy-room & 20 & \USD{314000} \\
+\end{longtable}
+\endgroup
+
+\paragraph{Sustainability remark (practical, not rhetorical).}
+If you are serious about ``off-grid'' for sustained compute, you should treat battery sizing, charging source sizing, and heat rejection as a coupled design: any thermal throttling that reduces compute also reduces energy efficiency, and any poor facility efficiency (high PUE) increases both battery and generation needs \cite{nrel_pue,uptime_survey_2024}.
+
+%-------------------------------------------------------------
+\clearpage
+\section{Workload suitability and operational fit}
+
+\subsection{Workload mapping: what dominates (compute, memory, bandwidth, or comms)?}
+\begingroup
+\small
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{longtable}{@{}L{\FirstColW}L{0.16\textwidth}L{0.17\textwidth}L{0.28\textwidth}L{0.22\textwidth}@{}}
+\caption{Workload-to-platform fit.}\label{tab:workload_fit}\\
+\toprule
+\textbf{Workload} & \textbf{Primary bottleneck} & \textbf{Best fit here} & \textbf{Why} & \textbf{Failure mode to watch} \\
+\midrule
+\endfirsthead
+\caption[]{Workload-to-platform fit (qualitative, with explicit bottleneck assumptions). (continued)}\\
+\toprule
+\textbf{Workload} & \textbf{Primary bottleneck} & \textbf{Best fit here} & \textbf{Why} & \textbf{Failure mode to watch} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Large language model (LLM) training (multi-GPU) &
+Interconnect + memory + Tensor throughput &
+RTX PRO 6000 Blackwell (dense GPU nodes) &
+High peak low-precision throughput; PCIe Gen 5; fewer GPUs eases orchestration \cite{nvidia_pro6000_server,pcisig_faq_pcie5} &
+If you cannot realize 2:4 sparsity or FP4 stability, the effective advantage shrinks; network-limited scaling \cite{nvidia_structured_sparsity_blog} \\
+\addlinespace
+LLM inference (many requests) &
+Memory capacity + batch scheduling &
+DGX Spark farm \emph{or} PRO 6000 &
+Spark provides large per-box unified memory and easy replication; PRO 6000 gives high per-GPU memory with high tensor peak \cite{nvidia_dgx_spark_specs,nvidia_pro6000_server} &
+Spark performance can be power- and thermally limited if sustained loads cannot hold near-peak \cite{dgx_spark_power_forum} \\
+\addlinespace
+Memory-bound scientific computing (out-of-core, streaming) &
+Bandwidth + memory footprint &
+RTX A6000 (pair NVLink if useful) &
+Large per-GPU VRAM improves shard sizes; stable FP32/TF32 tooling \cite{nvidia_a6000_page,nvidia_tf32_blog} &
+Without NVLink and with small nodes, PCIe and host memory become bottlenecks \cite{pcisig_faq_pcie5} \\
+\addlinespace
+Throughput FP32 simulations (embarrassingly parallel) &
+FP32 compute + many workers &
+RTX A5000 cluster &
+High aggregate FP32, and strong aggregate memory bandwidth \cite{nvidia_ampere_linecard} &
+Management overhead and network overhead dominate quickly; more failure points \\
+\end{longtable}
+\endgroup
+
+%-------------------------------------------------------------
+\clearpage
+\section{Feasibility scoring}
+\subsection{Scoring rubric}
+The earlier star ratings are retained, but the rationale is tightened: the ``AI throughput'' dimension is split between (i) peak low-precision AI throughput and (ii) realism of achieving it (sparsity/quantization readiness). This is why DGX Spark can score well on deployment ease while still carrying uncertainty about sustained peak behavior for long-duration runs \cite{dgx_spark_power_forum}.
+
+\begingroup
+\small
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.15}
+% Changed C{...} to L{...} for the last 4 columns to force left alignment
+\begin{longtable}{@{}L{\FirstColW}L{0.205\textwidth}L{0.205\textwidth}L{0.205\textwidth}L{0.205\textwidth}@{}}
+\caption{Feasibility scoring matrix (5 stars best).}\label{tab:scoring}\\
+\toprule
+\textbf{Metric} & \textbf{PRO 6000} & \textbf{DGX Spark} & \textbf{A6000} & \textbf{A5000} \\
+\midrule
+\endfirsthead
+\caption[]{Feasibility scoring matrix (5 stars best). (continued)}\\
+\toprule
+\textbf{Metric} & \textbf{PRO 6000} & \textbf{DGX Spark} & \textbf{A6000} & \textbf{A5000} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Peak AI \newline throughput per \$ & \starscore{5} & \starscore{4} & \starscore{1} & \starscore{2} \\
+Sustained-performance \newline confidence  & \starscore{4} & \starscore{3} & \starscore{4} & \starscore{4} \\
+Power efficiency          & \starscore{5} & \starscore{4} & \starscore{2} & \starscore{2} \\
+Deployment ease                   & \starscore{2} & \starscore{5} & \starscore{3} & \starscore{2} \\
+Per-device \newline memory capacity        & \starscore{5} & \starscore{4} & \starscore{3} & \starscore{2} \\
+Scale-out \newline complexity (ops)        & \starscore{3} & \starscore{2} & \starscore{2} & \starscore{1} \\
+\end{longtable}
+\endgroup
+
+%-------------------------------------------------------------
+\section{Decision tree}
+\label{sec:mindmap}
+
+\begin{figure}[H]
+\centering
+\label{fig:mindmap}
+\small
+\begin{minipage}{\textwidth}
+\raggedright
+\renewcommand{\DTstyle}{\small\rmfamily}
+\setlength{\DTbaselineskip}{14pt}
+\dirtree{%
+.1 GPU procurement decision space.
+.2 Compute throughput.
+.3 Dense arithmetic: FP32, TF32.
+.3 Low-precision AI: FP16, BF16, FP8, FP4.
+.3 Sparsity (``2:4''): doubles peak only when the model is pruned accordingly \cite{nvidia_structured_sparsity_blog,mishra2021sparsetensorcores}.
+.2 Memory.
+.3 Capacity (GB): determines maximum model shard size.
+.3 Bandwidth (GB/s): roofline-limited kernels and streaming.
+.3 Topology: GDDR7 vs GDDR6 vs LPDDR5x (unified).
+.2 Interconnect and communication.
+.3 PCIe Gen 4/5: host-to-device and peer-to-peer capacity \cite{pcisig_faq_pcie5}.
+.3 NVLink (2-way on Ampere workstation cards): helps only for paired GPUs.
+.3 NCCL collectives: all-reduce latency and bandwidth tradeoffs \cite{nccl_paper_2025}.
+.2 Power and thermals.
+.3 Nameplate versus sustained (thermal throttling).
+.3 Facility overhead (PUE) \cite{nrel_pue,uptime_survey_2024}.
+.3 Off-grid storage sizing (kWh) versus output power (kW) \cite{tesla_powerwall3_datasheet}.
+.2 Cost and risk.
+.3 CapEx: GPUs + hosts + network + cooling.
+.3 Supply risk and price drift (workstation channel).
+.3 Operational risk: many nodes versus few nodes.
+}
+\end{minipage}
+\caption{Decision mind-map: metrics, constraints, and terminology connections.}
+\end{figure}
+
+
+%-------------------------------------------------------------
+\section{Portmanteaus, etymologies, and naming notes}
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+  \item \textbf{GPGPU} is a portmanteau of ``general-purpose'' and ``GPU,'' reflecting the migration of parallel compute from graphics to scientific and AI workloads.
+  \item \textbf{Tensor} derives from Latin \emph{tendere} (to stretch), and in mathematics it generalizes scalars, vectors, and matrices into multi-index objects. In GPU marketing, ``Tensor Cores'' are specialized matrix-multiply units.
+  \item \textbf{Sparsity} derives from Latin \emph{sparsus} (scattered), and in modern deep learning it often means many weights are zero. NVIDIA's 2:4 structured sparsity is a constrained pattern that hardware can exploit efficiently \cite{nvidia_structured_sparsity_blog,mishra2021sparsetensorcores}.
+\end{itemize}
+
+%-------------------------------------------------------------
+\clearpage
+
+\section{Acronym glossary}
+\begingroup
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.15}
+\begin{longtable}{@{}L{\FirstColW}L{0.83\textwidth}@{}}
+\caption{Acronym glossary.}\label{tab:glossary}\\
+\toprule
+\textbf{Acronym} & \textbf{Meaning (and why it matters here)} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Acronym} & \textbf{Meaning (and why it matters here)} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+AI & Artificial intelligence; here it mainly implies neural-network training and inference workloads. \\
+BF16 & Brain Floating Point 16; a 16-bit format common in training, balancing range and precision. \\
+CUDA & Compute Unified Device Architecture; NVIDIA's programming and runtime stack for GPGPU. \\
+ECC & Error-correcting code; reduces silent memory errors, relevant for long scientific runs and training stability. \\
+FLOP & Floating-point operation; a rough unit for arithmetic throughput. \\
+FP4/FP8/\newline FP16/FP32 & Floating point with 4/8/16/32-bit representations; lower precision increases throughput but can change numerical behavior. \\
+GDDR6/GDDR7 & Graphics Double Data Rate (v6/v7); high-bandwidth memory on discrete GPUs. \\
+GPGPU & General-Purpose computing on Graphics Processing Units; using GPUs for non-graphics compute. \\
+kW/kWh & Kilowatt (power) / kilowatt-hour (energy); off-grid design requires both, not one. \\
+LLM & Large language model; large transformer models that are often memory- and bandwidth-intensive. \\
+MIG & Multi-Instance GPU; hardware partitioning that allows one GPU to present multiple isolated instances \cite{nvidia_pro6000_server}. \\
+NIC & Network interface card; relevant for multi-node training and inference scaling. \\
+NVLink & NVIDIA high-speed GPU interconnect; on these workstation Ampere cards it is typically 2-way bridging. \\
+PUE & Power Usage Effectiveness; facility power divided by IT power \cite{nrel_pue,uptime_survey_2024}. \\
+PSU & Power supply unit; nameplate power often derives from PSU ratings in appliance systems. \\
+TF32 & TensorFloat-32; Tensor Core mode that accelerates FP32-typed training without rewriting models \cite{nvidia_tf32_blog}. \\
+TDP & Thermal design power; a thermal engineering target, not always identical to real sustained draw. \\
+VRAM & Video random-access memory; on discrete GPUs this is local device memory, distinct from host RAM. \\
+\end{longtable}
+\endgroup
+
+
+%-------------------------------------------------------------
+\clearpage
+\section{Conclusion}
+Under accelerator-only accounting, RTX PRO 6000 Blackwell dominates on typed low-precision AI throughput per dollar, and it now also matches RTX A6000 on aggregate discrete GPU memory pool under \USD{150000} because it is a \SI{96}{GB} class part \cite{nvidia_pro6000_server}. DGX Spark is operationally compelling for rapid prototyping and inference replication, especially when you value integrated CPU+GPU and large unified memory per box \cite{nvidia_dgx_spark_specs}, but it is structurally disadvantaged for tight-coupled multi-GPU training because its compute and memory are naturally fragmented across many small nodes.
+
+When you add off-grid engineering realism (host overhead, PUE, discharge-path efficiency, and depth-of-discharge), battery requirements can increase from single-digit Powerwalls to double digits for the 10--20~kW class builds (Table \ref{tab:energy_scenarios}). That can invert ``best value'' decisions if energy infrastructure is genuinely part of the budget envelope, rather than an afterthought.
+
+The practical recommendation is therefore conditional:
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+  \item If you are optimizing for \emph{fewest nodes} and \emph{highest typed AI throughput} with a plausible path to quantization and 2:4 sparsity, prioritize RTX PRO 6000 Blackwell.
+  \item If you are optimizing for \emph{fastest deployment} and \emph{replicated local inference or prototyping}, prioritize DGX Spark.
+  \item If you are optimizing for \emph{per-device VRAM} and a conservative engineering profile, prioritize RTX A6000.
+  \item If you are optimizing for \emph{aggregate FP32 throughput and aggregate memory bandwidth} and you can operationalize many nodes, RTX A5000 remains a viable quantity-over-quality option.
+\end{itemize}
+
+\clearpage
+\printbibliography
+
+\end{document}
