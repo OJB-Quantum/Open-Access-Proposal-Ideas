@@ -1,5 +1,5 @@
 # Open-Access-Proposal-Ideas
-An idea repository initially formed by Onri Jay Benally for writing open access proposals. They start with markdowns. 
+An idea repository initially formed by Onri Jay Benally for writing open access proposals. They start with markdowns with trees and tables. 
 
 ```
 Resource-lean Hardware Engineering Strategy
